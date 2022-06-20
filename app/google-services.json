@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "552160587785",
+    "firebase_url": "https://chatx-82049-default-rtdb.firebaseio.com",
+    "project_id": "chatx-82049",
+    "storage_bucket": "chatx-82049.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:552160587785:android:e722483ab4fed27c8588d8",
+        "android_client_info": {
+          "package_name": "com.projectbyaniket.chatx"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "552160587785-llc6elov24pm6ioqtevf3e65s63u3gk4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyATgVQXTL0-bjKd931ClWmuTsqvwS_oR7k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "552160587785-llc6elov24pm6ioqtevf3e65s63u3gk4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
