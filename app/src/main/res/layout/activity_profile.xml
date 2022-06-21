@@ -53,4 +53,13 @@
         android:textSize="@dimen/_12sdp"
         android:textStyle="normal" />
 
+    <Button
+        android:id="@+id/idResetPass"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_25sdp"
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:text="Reset your password" />
+
 </LinearLayout>

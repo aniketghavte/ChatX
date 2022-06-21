@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
@@ -41,6 +42,7 @@ public class ProfileActivity extends AppCompatActivity {
     Uri selectedImageUri;
     String email;
     ProgressDialog progressDialog;
+    Button resetBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,6 +61,7 @@ public class ProfileActivity extends AppCompatActivity {
         SettingStatus = findViewById(R.id.idSettingStatus);
         circleImageView = findViewById(R.id.profile_imageInSetting);
         save = findViewById(R.id.idSaveBtn);
+        resetBtn = findViewById(R.id.idResetPass);
 
         DatabaseReference reference = Database.getReference().child("user").child(auth.getUid());
         StorageReference storageReference = Storage.getReference().child("Upload").child(auth.getUid());
@@ -79,6 +82,24 @@ public class ProfileActivity extends AppCompatActivity {
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
 
+            }
+        });
+
+        resetBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                auth.sendPasswordResetEmail(email).addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if (task.isSuccessful()){
+                            Toast.makeText(ProfileActivity.this, "Password reset link send to "+ email, Toast.LENGTH_SHORT).show();
+
+                        }else {
+                            Toast.makeText(ProfileActivity.this, "Something went wrong", Toast.LENGTH_SHORT).show();
+
+                        }
+                    }
+                });
             }
         });
 
