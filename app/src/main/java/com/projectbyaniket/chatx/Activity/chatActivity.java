@@ -162,6 +162,7 @@ public class chatActivity extends AppCompatActivity {
                                 });
                     }
                 });
+                massagesAdapter.notifyDataSetChanged();
             }
         });
 

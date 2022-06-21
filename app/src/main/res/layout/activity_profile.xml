@@ -30,25 +30,27 @@
         app:civ_border_color="#FF000000"/>
 
     <EditText
+        android:id="@+id/idSettingName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/idSettingName"
-        android:gravity="center"
         android:layout_marginTop="@dimen/_20sdp"
-        android:text="name"
         android:background="@null"
+        android:gravity="center"
+        android:minHeight="48dp"
+        android:text="name"
         android:textSize="@dimen/_16sdp"
-        android:textStyle="bold"/>
+        android:textStyle="bold" />
 
     <EditText
         android:id="@+id/idSettingStatus"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center"
         android:layout_marginTop="@dimen/_16sdp"
-        android:textSize="@dimen/_12sdp"
-        android:textStyle="normal"
         android:background="@null"
-        android:text="Hello There"/>
+        android:gravity="center"
+        android:minHeight="48dp"
+        android:text="Hello There"
+        android:textSize="@dimen/_12sdp"
+        android:textStyle="normal" />
 
 </LinearLayout>
