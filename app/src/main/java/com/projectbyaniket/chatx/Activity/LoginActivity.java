@@ -21,7 +21,7 @@ import com.projectbyaniket.chatx.R;
 public class LoginActivity extends AppCompatActivity {
 
     TextView text_SignUp;
-    EditText login_Email,login_password;
+    EditText login_Email, login_password;
     TextView SignBtn;
     FirebaseAuth auth;
     String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
@@ -48,24 +48,25 @@ public class LoginActivity extends AppCompatActivity {
                 progressDialog.show();
                 String email = login_Email.getText().toString();
                 String password = login_password.getText().toString();
-                if (TextUtils.isEmpty(email) || TextUtils.isEmpty(password)){
+                if (TextUtils.isEmpty(email) || TextUtils.isEmpty(password)) {
                     progressDialog.dismiss();
                     Toast.makeText(LoginActivity.this, "Please provide Valid Email or Password", Toast.LENGTH_SHORT).show();
-                } else if (!email.matches(emailPattern)){
+                } else if (!email.matches(emailPattern)) {
                     login_Email.setError("Invalid Email");
                     progressDialog.dismiss();
                     Toast.makeText(LoginActivity.this, "Invalid Email", Toast.LENGTH_SHORT).show();
-                } else if (password.length() < 6){
+                } else if (password.length() < 6) {
                     login_password.setError("Invalid Password");
                     progressDialog.dismiss();
                     Toast.makeText(LoginActivity.this, "Please Enter valid password", Toast.LENGTH_SHORT).show();
-                }else{
-                    auth.signInWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                } else {
+                    auth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
-                            if (task.isSuccessful()){
+                            if (task.isSuccessful()) {
                                 progressDialog.dismiss();
-                                startActivity(new Intent(LoginActivity.this,HomeActivity.class));
+                                startActivity(new Intent(LoginActivity.this, HomeActivity.class));
+                                finish();
                             } else {
                                 progressDialog.dismiss();
                                 Toast.makeText(LoginActivity.this, "User Not Found", Toast.LENGTH_SHORT).show();
@@ -80,7 +81,8 @@ public class LoginActivity extends AppCompatActivity {
         text_SignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(LoginActivity.this,RegistrationActivity.class));
+                startActivity(new Intent(LoginActivity.this, RegistrationActivity.class));
+                finish();
             }
         });
     }

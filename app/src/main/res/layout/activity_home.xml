@@ -31,7 +31,7 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/idUserRecyclerView"
         android:layout_width="match_parent"
-        android:layout_height="631dp"
+        android:layout_height="wrap_content"
         android:layout_below="@+id/idToolBar"
 
 
@@ -41,9 +41,9 @@
     <LinearLayout
         android:id="@+id/idLower"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_below="@+id/idUserRecyclerView"
+        android:layout_height="@dimen/_60sdp"
         android:layout_alignParentBottom="true"
+        android:layout_alignBottom="@id/idUserRecyclerView"
         android:layout_marginTop="0dp"
         android:background="@drawable/lower"
         android:foregroundGravity="bottom"
@@ -51,14 +51,14 @@
 
         <ImageView
             android:id="@+id/idImgLogout"
-            android:layout_width="wrap_content"
+            android:layout_width="@dimen/_30sdp"
             android:layout_height="@dimen/_30sdp"
             android:layout_weight="1"
             android:src="@drawable/startup" />
 
         <ImageView
             android:id="@+id/idSettingBtn"
-            android:layout_width="wrap_content"
+            android:layout_width="@dimen/_39sdp"
             android:layout_height="@dimen/_30sdp"
             android:layout_weight="1"
             android:src="@drawable/gear" />

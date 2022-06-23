@@ -96,6 +96,7 @@ public class chatActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()){
+
                     Massages massages = dataSnapshot.getValue(Massages.class);
                     massagesArrayList.add(massages);
                 }
@@ -128,6 +129,7 @@ public class chatActivity extends AppCompatActivity {
             public void onClick(View view) {
                 String Massage = EditMassage.getText().toString();
 
+                massagesArrayList.clear();
                 if (Massage.isEmpty()){
                     Toast.makeText(chatActivity.this, "Please Enter valid Text", Toast.LENGTH_SHORT).show();
                     return;
@@ -161,8 +163,10 @@ public class chatActivity extends AppCompatActivity {
                                     }
                                 });
                     }
+
                 });
                 massagesAdapter.notifyDataSetChanged();
+
             }
         });
 

@@ -35,6 +35,7 @@ public class HomeActivity extends AppCompatActivity {
     FirebaseDatabase database;
     ArrayList<Users> usersArrayList;
     ImageView imgLogOut , imgSetting;
+    ArrayList<Users> ArraylistNew;
 
 
     @Override
@@ -45,23 +46,16 @@ public class HomeActivity extends AppCompatActivity {
         auth = FirebaseAuth.getInstance();
         database = FirebaseDatabase.getInstance();
 
+
         usersArrayList = new ArrayList<>();
+        if (auth.getCurrentUser() == null){
+            startActivity(new Intent(HomeActivity.this,RegistrationActivity.class));
+        }
 
-        DatabaseReference databaseReference = database.getReference().child("user");
 
-        databaseReference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for (DataSnapshot dataSnapshot:snapshot.getChildren()){
-                    Users users= dataSnapshot.getValue(Users.class);
-                    usersArrayList.add(users);
-                }
-                adapter.notifyDataSetChanged();
-            }
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-            }
-        });
+        loadUsers();
+
+
         imgLogOut = findViewById(R.id.idImgLogout);
         mainUserRV = findViewById(R.id.idUserRecyclerView);
         imgSetting = findViewById(R.id.idSettingBtn);
@@ -81,6 +75,7 @@ public class HomeActivity extends AppCompatActivity {
                             public void onClick(DialogInterface dialog, int id) {
                                 auth.signOut();
                                 startActivity(new Intent(HomeActivity.this,LoginActivity.class));
+                                finish();
                             }
                         })
 
@@ -103,10 +98,31 @@ public class HomeActivity extends AppCompatActivity {
                 startActivity(new Intent(HomeActivity.this, ProfileActivity.class));
             }
         });
-        if (auth.getCurrentUser() == null){
-            startActivity(new Intent(HomeActivity.this,RegistrationActivity.class));
-        }
 
+
+    }
+
+    private void loadUsers() {
+        DatabaseReference databaseReference = database.getReference().child("user");
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                usersArrayList.clear();
+
+                for (DataSnapshot dataSnapshot:snapshot.getChildren()){
+                    Users users= dataSnapshot.getValue(Users.class);
+
+                    if (auth.getUid() != users.getUid()){
+                        usersArrayList.add(users);
+                    }
+
+                }
+                adapter.notifyDataSetChanged();
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+            }
+        });
     }
 
     boolean doubleBackToExitPressedOnce = false;

@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -43,6 +44,7 @@ public class ProfileActivity extends AppCompatActivity {
     String email;
     ProgressDialog progressDialog;
     Button resetBtn;
+    TextView emailInProfile;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,6 +64,7 @@ public class ProfileActivity extends AppCompatActivity {
         circleImageView = findViewById(R.id.profile_imageInSetting);
         save = findViewById(R.id.idSaveBtn);
         resetBtn = findViewById(R.id.idResetPass);
+        emailInProfile = findViewById(R.id.idEmailInProfile);
 
         DatabaseReference reference = Database.getReference().child("user").child(auth.getUid());
         StorageReference storageReference = Storage.getReference().child("Upload").child(auth.getUid());
@@ -76,6 +79,7 @@ public class ProfileActivity extends AppCompatActivity {
 
                 SettingName.setText(name);
                 SettingStatus.setText(status);
+                emailInProfile.setText(email);
                 Picasso.get().load(imageUri).into(circleImageView);
             }
 
@@ -147,6 +151,7 @@ public class ProfileActivity extends AppCompatActivity {
                             });
                         }
                     });
+
                 }else {
                     storageReference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                         @Override
