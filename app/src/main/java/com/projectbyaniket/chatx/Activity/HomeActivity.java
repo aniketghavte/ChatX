@@ -27,7 +27,7 @@ import com.projectbyaniket.chatx.ProfileActivity;
 
 import java.util.ArrayList;
 
-public class HomeActivity extends AppCompatActivity {
+public class   HomeActivity extends AppCompatActivity {
 
     FirebaseAuth auth;
     RecyclerView mainUserRV;

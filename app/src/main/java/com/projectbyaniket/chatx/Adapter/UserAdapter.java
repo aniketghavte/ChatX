@@ -45,13 +45,12 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder>{
         Users users = usersArrayList.get(position);
 
         
-        if (FirebaseAuth.getInstance().getCurrentUser().getUid().equals(users.getUid())){
-            holder.itemView.setVisibility(View.GONE);
+        if (FirebaseAuth.getInstance().getCurrentUser().getUid()!=(users.getUid())){
+            holder.userName.setText(users.name);
+            holder.userStatus.setText(users.status);
+            Picasso.get().load(users.imageuri).into(holder.userProfile);
         }
 
-        holder.userName.setText(users.name);
-        holder.userStatus.setText(users.status);
-        Picasso.get().load(users.imageuri).into(holder.userProfile);
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
